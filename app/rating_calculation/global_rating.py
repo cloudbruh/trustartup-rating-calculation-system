@@ -1,6 +1,6 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from math import log
-from .models import Startup, StartupRating
+from ..models import Startup, StartupRating
 
 def calculate_global_rating(startup: Startup) -> StartupRating:
     rating: float = 0
@@ -10,8 +10,8 @@ def calculate_global_rating(startup: Startup) -> StartupRating:
         post_rating += len(post.likes)
         post_rating += len(post.comments)
 
-        time_passed: timedelta = datetime.now() - post.created_at
-        post_rating *= 1 / log(time_passed.total_seconds / 86400 + 2)
+        time_passed: timedelta = datetime.utcnow().replace(tzinfo=timezone.utc) - post.created_at
+        post_rating *= 1 / log(time_passed.total_seconds() / 86400 + 2)
 
         rating += post_rating
     

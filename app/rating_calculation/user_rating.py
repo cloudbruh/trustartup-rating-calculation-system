@@ -1,5 +1,4 @@
-from datetime import timedelta, timezone
-import datetime
+from datetime import datetime, timedelta, timezone
 from math import log
 
 from .global_rating import calculate_global_rating

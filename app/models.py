@@ -11,7 +11,7 @@ class Comment(BaseModel):
     id: int
     user_id: int
     text: str
-    replied_id: int
+    replied_id: int | None = None
     updated_at: datetime
     created_at: datetime
 

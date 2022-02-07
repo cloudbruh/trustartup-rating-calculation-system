@@ -29,7 +29,7 @@ class Follow(BaseModel):
     id: int
     user_id: int
     startup_id: int
-    created_at: int
+    created_at: datetime
 
 class Startup(BaseModel):
     id: int
